@@ -46,13 +46,17 @@ def prime_known_hosts(fqdns: List[str]) -> None:
     kh_path.parent.mkdir(parents=True, exist_ok=True)
     existing = set(kh_path.read_text().splitlines()) if kh_path.exists() else set()
 
-    new_lines = [l for l in out.splitlines() if l and l not in existing]
+
+    lines = [l for l in out.splitlines() if l]
+    new_lines = [l for l in lines if l not in existing]
+    new_hosts = { l.split()[0] for l in new_lines }
+
     if new_lines:
         with kh_path.open("a") as fh:
             fh.write("\n".join(new_lines) + "\n")
-        print(f"[keyscan] added {len(new_lines)} new keys to {kh_path}")
+        print(f"[keyscan] Scanned {len(fqdns)} hosts, added {len(new_hosts)} new host(s) ({len(new_lines)} key lines) to {kh_path}")
     else:
-        print("[keyscan] keys already present; skipping")
+        print(f"[keyscan] scanned {len(fqdns)} hosts; all keys already present; skipping")
 
 def process_node(node: str, dns_suffix: str, sudo_pw: str) -> Tuple[bool, str]:
     """Return (success, log_block). All prints are buffered into *log_block*."""
@@ -114,7 +118,7 @@ def main() -> None:
         print("Error: DNS suffix must not be empty")
         return
 
-    sudo_pw = getpass.getpass("sudo password: ")
+    sudo_pw = getpass.getpass("Sudo password: ")
     if not sudo_pw:
         print("Error: sudo password must not be empty")
         return
@@ -122,7 +126,7 @@ def main() -> None:
     prime_known_hosts([f"{n}.{dns_suffix}" for n in nodes])
 
     workers = max(1, min(args.max_workers, len(nodes)))
-    print(f"\nProcessing {len(nodes)} nodes with {workers} worker(s)…")
+    print(f"\nProcessing {len(nodes)} nodes with {workers} node(s)…")
 
     summary: dict[str, bool] = {}
     with ThreadPoolExecutor(max_workers=workers) as pool:

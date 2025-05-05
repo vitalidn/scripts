@@ -53,13 +53,12 @@ def prime_known_hosts(fqdns: List[str]) -> None:
     kh_path.parent.mkdir(parents=True, exist_ok=True)
     existing = set(kh_path.read_text().splitlines()) if kh_path.exists() else set()
 
-    new_lines = [l for l in out.splitlines() if l and l not in existing]
     if new_lines:
         with kh_path.open("a") as fh:
             fh.write("\n".join(new_lines) + "\n")
-        print(f"[keyscan] added {len(new_lines)} new keys to {kh_path}")
+        print(f"[keyscan] Scanned {len(fqdns)} hosts, added {len(new_hosts)} new host(s) ({len(new_lines)} key lines) to {kh_path}")
     else:
-        print("[keyscan] keys already present; skipping")
+        print(f"[keyscan] scanned {len(fqdns)} hosts; all keys already present; skipping")
 
 
 def process_node(node: str, dns_suffix: str, sudo_pw: str) -> Tuple[bool, str]:

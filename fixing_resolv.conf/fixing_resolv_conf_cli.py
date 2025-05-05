@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-./fixing_resolv_conf.py \
-  --node-mask PREFIX-[01:111] \
-  --dns-suffix bingo.ca1 \
-  --sudo-password your_sudo_password \
-  --max-workers 8
-
-"""
-
-
 from __future__ import annotations
 
 import argparse
@@ -18,6 +8,14 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import List, Tuple
+"""
+./fixing_resolv_conf_cli.py \
+  --node-mask PREFIX-[01:111] \
+  --dns-suffix bingo.ca1 \
+  --sudo-password your_sudo_password \
+  --max-workers 8
+
+"""
 
 # SSH options with multiplexing for speed
 SSH_OPTS = "-o BatchMode=yes -o ControlMaster=auto -o ControlPersist=60s"

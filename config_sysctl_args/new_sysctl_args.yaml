@@ -1,0 +1,3 @@
+sysctl_args:
+    - name: vm.max_map_count
+      value: 524288

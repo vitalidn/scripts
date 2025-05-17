@@ -4,6 +4,14 @@ This repository contains various utility scripts for system administration tasks
 
 ## Available Scripts
 
+### Vault Dump and Restore
+Location: `vault_dump_restore/`
+- Python scripts for backing up and restoring HashiCorp Vault secrets
+- Supports KV v2 secrets engine
+- Includes LDAP authentication
+- Allows searching through dumped secrets
+- [More details](vault_dump_restore/README.md)
+
 ### Interactive Disk Partitioning
 Location: `interactive_disks_partition/`
 - Interactive script for partitioning multiple disks across multiple hosts

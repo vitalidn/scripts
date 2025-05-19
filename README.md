@@ -6,9 +6,15 @@ A collection of useful scripts for various tasks.
 
 ### Infrastructure
 - [SSH CVE-2024-6387 Fix](infrastructure/fix_ssh_cve_2024_6387/README.md) - Script to fix the OpenSSH signal handler race condition vulnerability (CVE-2024-6387)
+- [Interactive Disk Partitioning](interactive_disks_partition/README.md) - Interactive script for partitioning multiple disks across multiple hosts
+- [Sysctl Configuration](config_sysctl_args/README.md) - Batch configuration of sysctl parameters on remote hosts
+- [DNS Suffix Management](fixing_resolv.conf/README.md) - Validates and fixes DNS search suffixes on Linux nodes
 
 ### CDN
 - [Akamai Cache Purge](cdn/akamai/README.md) - Script for purging Akamai CDN cache via API
+
+### Security
+- [Vault Dump and Restore](vault_dump_restore/README.md) - Python scripts for backing up and restoring HashiCorp Vault secrets
 
 ## Requirements
 
@@ -38,6 +44,18 @@ scripts/
 │   └── akamai/
 │       ├── README.md
 │       └── api_fast-purge.py
+├── vault_dump_restore/
+│   ├── README.md
+│   └── vault_dump_restore.py
+├── interactive_disks_partition/
+│   ├── README.md
+│   └── interactive_disks_partition.py
+├── config_sysctl_args/
+│   ├── README.md
+│   └── config_sysctl_args.py
+├── fixing_resolv.conf/
+│   ├── README.md
+│   └── fixing_resolv.conf.py
 └── ...
 ```
 

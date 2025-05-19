@@ -1,44 +1,50 @@
-# Scripts for automating SRE/DevOps tasks
+# Scripts Collection
 
-This repository contains various utility scripts for system administration tasks.
+A collection of useful scripts for various tasks.
 
-## Available Scripts
+## Contents
 
-### Vault Dump and Restore
-Location: `vault_dump_restore/`
-- Python scripts for backing up and restoring HashiCorp Vault secrets
-- Supports KV v2 secrets engine
-- Includes LDAP authentication
-- Allows searching through dumped secrets
-- [More details](vault_dump_restore/README.md)
+### Infrastructure
+- [SSH CVE-2024-6387 Fix](infrastructure/fix_ssh_cve_2024_6387/README.md) - Script to fix the OpenSSH signal handler race condition vulnerability (CVE-2024-6387)
 
-### Interactive Disk Partitioning
-Location: `interactive_disks_partition/`
-- Interactive script for partitioning multiple disks across multiple hosts
-- Supports host ranges (e.g., host[1:5])
-- Creates identical partition layouts across all specified hosts
-- Features safety checks and detailed logging
-- [More details](interactive_disks_partition/README.md)
+### CDN
+- [Akamai Cache Purge](cdn/akamai/README.md) - Script for purging Akamai CDN cache via API
 
-### Sysctl Configuration
-Location: `config_sysctl_args/`
-- Batch configuration of sysctl parameters on remote hosts
-- Supports parallel processing of multiple hosts
-- Verifies parameter existence and applies changes
-- Uses YAML configuration file for parameter definitions
-- [More details](config_sysctl_args/README.md)
+## Requirements
 
-### DNS Suffix Management
-Location: `fixing_resolv.conf/`
-- Validates and fixes DNS search suffixes on Linux nodes
-- Updates DOMAINS entry in systemd network interface files
-- Supports parallel processing of multiple nodes
-- Includes safety checks and verification steps
-- [More details](fixing_resolv.conf/README.md)
+- Python 3.x
+- pip (Python package manager)
 
-## Common Features
-- All scripts support parallel processing of multiple hosts
-- SSH-based remote execution
-- Detailed logging and error handling
-- Interactive prompts for user input
-- Safety checks to prevent accidental system modifications
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd scripts
+```
+
+2. Install dependencies for each script separately by following the instructions in their respective README files.
+
+## Project Structure
+
+```
+scripts/
+├── README.md
+├── infrastructure/
+│   └── fix_ssh_cve_2024_6387/
+│       ├── README.md
+│       └── fix_ssh_cve_2024_6387.py
+├── cdn/
+│   └── akamai/
+│       ├── README.md
+│       └── api_fast-purge.py
+└── ...
+```
+
+## Usage
+
+Each script has its own README file with detailed usage instructions. Navigate to the respective directory for more information.
+
+## License
+
+MIT License
